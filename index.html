@@ -1,1 +1,76 @@
-<h1>welcome</h1>
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>django cheat sheet: Django admin filter with dropdown.</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="google-site-verification" content="O3dP4oiGaUPHJWtlqYQvmdnVHQlV3fxPwf6WDoBFj5Y" />
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="icon" href="../assets/img/djcheatsheet-icon.png" sizes="32x32" />
+        <link rel="icon" href="../assets/img/djcheatsheet-icon.png" sizes="192x192" />
+        <!-- UIkit CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.25/css/uikit.min.css" />
+		 <!-- Font-awesome CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<!-- Bootstrap CSS -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+		<!-- Material design bootstrap CSS -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.9/css/mdb.min.css" rel="stylesheet">
+        <link rel="stylesheet" media="all" href="../assets/css/jquery.highlight.css" />
+        </head>
+    <body>
+        <div style="position:sticky; overflow:hidden; z-index:1000; top:0px; background:white; border-bottom: 1px solid rgba(232, 224, 224, 0.7);box-shadow: 1px 1px 2px lightgrey;">
+	<div class="container">
+	    <h1><a href="../">&#x21E6;Django CheatSheet</a></h1>
+	</div>
+	</div>
+        <hr>
+        <div class="container">
+<p>First of all, Run the following command to install <strong>django-admin-list-filter-dropdown</strong> module</p>
+<pre class="code" data-language="python">
+pip install django-admin-list-filter-dropdown
+</pre>
+<p>Now go to the setting.py file of your root app. And place the following in your INSTALLED_APPS enclosing with single quotation mark.</p>
+<pre class="code" data-language="python">
+django_admin_listfilter_dropdown
+</pre>
+<p>Go to the admin.py file of your app, import the module and apply the list_filter list like following coding snippet.</p>
+<pre class="code" data-language="python">
+from django_admin_listfilter_dropdown.filters import ( DropdownFilter, ChoiceDropdownFilter, RelatedDropdownFilter )
+
+class modelClass(admin.ModelAdmin):
+    list_filter = [
+                   ("gender_type", DropdownFilter),
+                   ("area_type", DropdownFilter),
+                   ("thana", DropdownFilter)
+                   ]
+    class Meta:
+        model = SpatialData
+
+admin.site.register(SpatialData, modelClass)
+</pre>
+        <p>Save the code and re-run the project. Now you will see filter like the image below.</p>
+        <div class="text-center"><img src="../assets/img/admin-dropdown-filter.PNG" alt=""></div>
+    	<!-- JQuery JS -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="../assets/js/jquery.highlight.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('pre.code').highlight({source:1, zebra:1, indent:'space', list:'ol',attribute: 'data-language'});
+            });
+        </script>
+		<!-- Popper JS -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+		<!-- Bootstrap JS -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+		<!-- Material design bootstrap JS -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.9/js/mdb.min.js"></script>
+		<!-- Google analytics JS -->
+		<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+		<!-- UIkit JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.25/js/uikit.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.25/js/uikit-icons.min.js"></script>
+    </body>
+</html>
